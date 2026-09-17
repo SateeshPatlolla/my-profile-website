@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sateesh Reddy Patlolla — Data Scientist</title>
+  <meta name="description" content="Sateesh Reddy Patlolla — Data Scientist. Skills, tools, and experience." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #1F3A5F;
+      --ink: #14243A;
+      --blue: #2E75B6;
+      --copper: #B98A2E;
+      --gold: #D9BE7E;
+      --parchment: #F4EFE3;
+      --parchment-deep: #EAE1CB;
+      --paper: #FBF8F1;
+      --line: #C9BFA3;
+      --line-soft: #DBD3BC;
+      --max: 1120px;
+
+      --serif: 'Fraunces', Georgia, serif;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--parchment);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+    h1, h2, h3 {
+      font-family: var(--serif);
+      color: var(--navy);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+      margin: 0;
+    }
+    h1 { font-size: clamp(34px, 5vw, 54px); font-weight: 600; }
+    h2 { font-size: 28px; }
+    h3 { font-size: 19px; }
+
+    .eyebrow {
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--copper);
+      margin: 0 0 36px;
+    }
+    .hero .eyebrow { margin-bottom: 22px; }
+
+    /* ---------- Header ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(244, 239, 227, 0.86);
+      backdrop-filter: saturate(160%) blur(8px);
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+    }
+    .nav .name { font-family: var(--serif); font-weight: 600; color: var(--navy); font-size: 18px; }
+    .nav nav a {
+      font-family: var(--mono);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+      margin-left: 24px;
+    }
+    .nav nav a:hover { color: var(--copper); text-decoration: none; }
+    @media (max-width: 640px) {
+      .nav nav a:not(.cta) { display: none; }
+    }
+
+    /* ---------- Sections ---------- */
+    section { scroll-margin-top: 74px; }
+    /* Full-width section; content re-centered to --max via calc padding */
+    section.wrap {
+      position: relative;
+      max-width: none;
+      margin: 0;
+      padding: 76px max(28px, calc((100% - var(--max)) / 2));
+    }
+
+    /* ---------- Animated section lines (draw left → right on reveal) ---------- */
+    /* Full-width divider between sections, rendered as a scalable line */
+    section.wrap:not(.hero):not(:last-of-type)::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%; height: 1px;
+      background: var(--line-soft);
+      transform-origin: left;
+    }
+    /* Navy line under each section heading */
+    .focus-grid::before, .ledger::before, .skills::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 1px;
+      background: var(--navy);
+      transform-origin: left;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      /* Start collapsed (only once JS has added .reveal, so no-JS keeps lines visible) */
+      .reveal:not(:last-of-type)::after,
+      .reveal .focus-grid::before,
+      .reveal .ledger::before,
+      .reveal .skills::before {
+        transform: scaleX(0);
+        transition: transform 0.8s ease;
+      }
+      /* Draw when the section reveals (already gated to after the hero) */
+      .reveal.is-visible:not(:last-of-type)::after,
+      .reveal.is-visible .focus-grid::before,
+      .reveal.is-visible .ledger::before,
+      .reveal.is-visible .skills::before {
+        transform: scaleX(1);
+      }
+    }
+
+    /* Internal separators (rows, skill rows, focus cells) + hero underline */
+    .row::after, .skillrow::after, .focus-item::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%; height: 1px;
+      background: var(--line-soft);
+      transform-origin: left;
+    }
+    .focus-item:nth-child(odd)::before {
+      content: "";
+      position: absolute;
+      top: 0; right: 0;
+      width: 1px; height: 100%;
+      background: var(--line-soft);
+      transform-origin: top;
+    }
+    .hero.wrap::after {
+      content: "";
+      position: absolute;
+      left: 0; bottom: 0;
+      width: 100%; height: 1px;
+      background: var(--line);
+      transform-origin: left;
+    }
+    @keyframes draw-x { to { transform: scaleX(1); } }
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal .row::after,
+      .reveal .skillrow::after,
+      .reveal .focus-item::after { transform: scaleX(0); transition: transform 0.7s ease; }
+      .reveal .focus-item:nth-child(odd)::before { transform: scaleY(0); transition: transform 0.7s ease; }
+      .reveal.is-visible .row::after,
+      .reveal.is-visible .skillrow::after,
+      .reveal.is-visible .focus-item::after { transform: scaleX(1); }
+      .reveal.is-visible .focus-item:nth-child(odd)::before { transform: scaleY(1); }
+      /* Hero underline draws just after the title, in sync with the nav */
+      .hero.wrap::after { transform: scaleX(0); animation: draw-x 0.8s ease 1.75s both; }
+    }
+
+    /* ---------- Scroll-reveal (experiment) ---------- */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.6s ease, transform 0.6s ease; }
+      .reveal.is-visible { opacity: 1; transform: none; }
+
+      /* Staggered children reveal (experiment #1) */
+      .reveal .focus-item,
+      .reveal .row,
+      .reveal .skillrow {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.5s ease, transform 0.5s ease, color 0.15s ease, background 0.15s ease;
+      }
+      .reveal.is-visible .focus-item,
+      .reveal.is-visible .row,
+      .reveal.is-visible .skillrow { opacity: 1; transform: none; }
+
+      .reveal.is-visible .focus-item:nth-child(1),
+      .reveal.is-visible .row:nth-child(1),
+      .reveal.is-visible .skillrow:nth-child(1) { transition-delay: 0.08s; }
+      .reveal.is-visible .focus-item:nth-child(2),
+      .reveal.is-visible .row:nth-child(2),
+      .reveal.is-visible .skillrow:nth-child(2) { transition-delay: 0.16s; }
+      .reveal.is-visible .focus-item:nth-child(3),
+      .reveal.is-visible .row:nth-child(3),
+      .reveal.is-visible .skillrow:nth-child(3) { transition-delay: 0.24s; }
+      .reveal.is-visible .focus-item:nth-child(4),
+      .reveal.is-visible .row:nth-child(4),
+      .reveal.is-visible .skillrow:nth-child(4) { transition-delay: 0.32s; }
+      .reveal.is-visible .focus-item:nth-child(5),
+      .reveal.is-visible .row:nth-child(5),
+      .reveal.is-visible .skillrow:nth-child(5) { transition-delay: 0.40s; }
+    }
+
+    /* ---------- Scroll progress bar (experiment) ---------- */
+    #progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px; width: 100%;
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      background: var(--copper);
+      z-index: 100;
+      will-change: transform;
+    }
+    /* Active nav link (experiment) */
+    .nav nav a.active { color: var(--copper); }
+
+    /* ---------- Hover polish (experiment) ---------- */
+    .tag { transition: border-color 0.15s ease, transform 0.15s ease; }
+    .tag:hover { border-color: var(--copper); }
+
+    .focus-item, .focus-item h3,
+    .row, .row .title { transition: color 0.15s ease, background 0.15s ease; }
+    .focus-item:hover { background: rgba(251, 248, 241, 0.6); }
+    .focus-item:hover h3 { color: var(--copper); }
+    .row:hover { background: rgba(251, 248, 241, 0.6); }
+    .row:hover .title { color: var(--copper); }
+    .skillrow { transition: background 0.15s ease; }
+    .skillrow:hover { background: rgba(251, 248, 241, 0.6); }
+
+    /* ---------- Skip link + focus rings (experiment) ---------- */
+    .skip-link {
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 200;
+      transform: translateY(-120%);
+      background: var(--navy);
+      color: var(--paper);
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      padding: 12px 18px;
+      border-radius: 0 0 4px 0;
+      transition: transform 0.15s ease;
+      text-decoration: none;
+    }
+    .skip-link:focus { transform: translateY(0); outline: none; }
+
+    a:focus-visible,
+    button:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 2px solid var(--copper);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* ---------- Nav stagger entrance (experiment) ---------- */
+    @keyframes nav-in {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .nav .name,
+      .nav nav a {
+        opacity: 0;
+        animation: nav-in 0.5s ease forwards;
+      }
+      .nav .name          { animation-delay: 1.75s; }
+      .nav nav a:nth-child(1) { animation-delay: 1.83s; }
+      .nav nav a:nth-child(2) { animation-delay: 1.89s; }
+      .nav nav a:nth-child(3) { animation-delay: 1.95s; }
+      .nav nav a:nth-child(4) { animation-delay: 2.01s; }
+    }
+
+    /* ---------- Nav theme inversion over dark panel (experiment) ---------- */
+    header { transition: background 0.3s ease, border-color 0.3s ease; }
+    .nav .name, .nav nav a { transition: color 0.3s ease; }
+    header.over-dark {
+      background: rgba(31, 58, 95, 0.9);
+      border-bottom-color: rgba(255, 255, 255, 0.15);
+    }
+    header.over-dark .name,
+    header.over-dark .nav nav a { color: var(--paper); }
+    header.over-dark .nav nav a:hover,
+    header.over-dark .nav nav a.active { color: var(--gold); }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .tag:hover { transform: translateY(-1px); }
+    }
+
+    /* ---------- Hero ---------- */
+    .hero.wrap {
+      max-width: none;
+      margin: 0;
+      padding: 96px max(28px, calc((100% - var(--max)) / 2)) 72px;
+    }
+    .hero h1 { max-width: 12ch; }
+    .hero .role {
+      font-family: var(--mono);
+      font-size: 15px;
+      color: var(--navy);
+      margin-top: 22px;
+      letter-spacing: 0.02em;
+    }
+    .hero .role span { color: var(--copper); }
+
+    /* ---------- Wipe-in title reveal (experiment #3) ---------- */
+    @keyframes wipe-in {
+      from { clip-path: inset(0 100% 0 0); }
+      to   { clip-path: inset(0 0 0 0); }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero .eyebrow,
+      .hero h1 { animation: wipe-in 1.3s cubic-bezier(0.33, 0, 0.15, 1) 0.35s both; }
+    }
+
+    /* ---------- Hero intro choreography (experiment #2) ---------- */
+    @keyframes hero-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero .tags-lg {
+        opacity: 0;
+        animation: hero-in 0.6s ease 1.85s forwards;
+      }
+    }
+
+    /* ---------- Tags / chips ---------- */
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      padding: 5px 10px;
+      white-space: nowrap;
+    }
+    .tags-lg { gap: 10px; margin-top: 22px; }
+    .tags-lg .tag { font-size: 13px; padding: 8px 14px; background: transparent; }
+    .tags-lg .tag strong { color: var(--copper); font-weight: 500; }
+
+    /* ---------- Focus band ---------- */
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      margin-top: 8px;
+      position: relative;
+    }
+    .focus-item {
+      padding: 24px 28px 24px 0;
+      position: relative;
+    }
+    .focus-item:nth-child(odd) { padding-right: 28px; }
+    .focus-item:nth-child(even) { padding-left: 28px; }
+    .focus-item .k { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--copper); }
+    .focus-item h3 { margin: 6px 0 0; }
+    @media (max-width: 560px) {
+      .focus-grid { grid-template-columns: 1fr; }
+      .focus-item, .focus-item:nth-child(odd), .focus-item:nth-child(even) { padding: 20px 0; }
+      .focus-item:nth-child(odd)::before { display: none; }
+    }
+
+    /* ---------- Ledger rows (experience / education) ---------- */
+    .ledger { position: relative; margin-top: 8px; }
+    .row {
+      display: grid;
+      grid-template-columns: 44px 1fr auto;
+      gap: 0 20px;
+      align-items: baseline;
+      padding: 26px 0;
+      position: relative;
+    }
+    .row .idx { font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--copper); }
+    .row .title { font-family: var(--serif); font-size: 19px; color: var(--navy); }
+    .row .org { font-family: var(--sans); font-size: 16px; color: var(--ink); opacity: 0.8; display: block; margin-top: 2px; }
+    .row .date { font-family: var(--mono); font-size: 13px; color: var(--navy); opacity: 0.75; white-space: nowrap; }
+    @media (max-width: 560px) {
+      .row { grid-template-columns: 1fr; gap: 4px; }
+      .row .idx { display: none; }
+      .row .date { margin-top: 4px; }
+    }
+
+    /* ---------- Skills ---------- */
+    .skills { margin-top: 8px; position: relative; }
+    .skillrow {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 8px 28px;
+      padding: 22px 0;
+      position: relative;
+    }
+    .skillrow .label {
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--copper);
+      padding-top: 3px;
+    }
+    .skillrow .items { font-size: 16.5px; color: var(--ink); }
+    @media (max-width: 560px) { .skillrow { grid-template-columns: 1fr; gap: 4px; } }
+
+    /* ---------- Contact panel ---------- */
+    .contact-panel {
+      background: var(--navy);
+      color: var(--paper);
+      border-radius: 3px;
+      padding: 52px;
+    }
+    .contact-panel .eyebrow { color: var(--gold); margin-bottom: 16px; }
+    .contact-panel h2 { color: var(--paper); margin-bottom: 24px; }
+    .contactlinks { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+    .btn {
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 12px 20px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+    .btn-primary { background: var(--gold); color: var(--ink); font-weight: 500; }
+    .btn-primary:hover { background: #e6cf95; text-decoration: none; }
+    .btn-ghost { border: 1px solid rgba(255,255,255,0.35); color: var(--paper); }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); text-decoration: none; }
+    @media (max-width: 560px) { .contact-panel { padding: 36px 28px; } }
+
+    footer { padding: 40px 0; color: var(--navy); opacity: 0.7; font-family: var(--mono); font-size: 12.5px; }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div id="progress"></div>
+
+  <header>
+    <div class="wrap nav">
+      <span class="name">Sateesh Reddy Patlolla</span>
+      <nav>
+        <a href="#focus">Focus</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact" class="cta">Get in touch</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero wrap">
+      <p class="eyebrow">Data Scientist</p>
+      <h1>Sateesh Reddy Patlolla</h1>
+      <div class="tags tags-lg">
+        <span class="tag"><strong>+</strong> Machine Learning &amp; AI</span>
+        <span class="tag"><strong>+</strong> Statistical Models</span>
+        <span class="tag"><strong>+</strong> Analytics</span>
+        <span class="tag"><strong>+</strong> Forecasting</span>
+      </div>
+    </section>
+
+    <!-- ================= FOCUS ================= -->
+    <section id="focus" class="wrap">
+      <p class="eyebrow">What I work on</p>
+      <div class="focus-grid">
+        <div class="focus-item">
+          <span class="k">01</span>
+          <h3>Machine Learning &amp; Artificial Intelligence</h3>
+          <div class="tags">
+            <span class="tag">Supervised</span>
+            <span class="tag">Unsupervised</span>
+            <span class="tag">Deep Learning</span>
+            <span class="tag">LLMs</span>
+            <span class="tag">AI Agents</span>
+            <span class="tag">RAG</span>
+          </div>
+        </div>
+        <div class="focus-item">
+          <span class="k">02</span>
+          <h3>Statistical Models</h3>
+          <div class="tags">
+            <span class="tag">Hypothesis Testing</span>
+            <span class="tag">Regression Models</span>
+            <span class="tag">Generalized Linear Models</span>
+            <span class="tag">Bayesian Networks</span>
+          </div>
+        </div>
+        <div class="focus-item">
+          <span class="k">03</span>
+          <h3>Analytics</h3>
+          <div class="tags">
+            <span class="tag">A/B Testing</span>
+            <span class="tag">Experiment Design</span>
+            <span class="tag">KPIs &amp; Dashboards</span>
+            <span class="tag">Data Visualization</span>
+          </div>
+        </div>
+        <div class="focus-item">
+          <span class="k">04</span>
+          <h3>Forecasting</h3>
+          <div class="tags">
+            <span class="tag">Time-Series</span>
+            <span class="tag">Prophet</span>
+            <span class="tag">Demand &amp; Risk</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXPERIENCE ================= -->
+    <section id="experience" class="wrap">
+      <p class="eyebrow">Experience</p>
+      <div class="ledger">
+        <div class="row">
+          <span class="idx">01</span>
+          <span>
+            <span class="title">Data Scientist</span>
+            <span class="org">Iowa Department of Health &amp; Human Services</span>
+            <div class="tags">
+              <span class="tag">Forecasting</span>
+              <span class="tag">Spatial Optimization</span>
+              <span class="tag">Causal Inference</span>
+              <span class="tag">Master Data</span>
+            </div>
+          </span>
+          <span class="date">Feb 2025 — Present</span>
+        </div>
+        <div class="row">
+          <span class="idx">02</span>
+          <span>
+            <span class="title">Data Analytics &amp; Data Engineer</span>
+            <span class="org">Tata Consultancy Services</span>
+            <div class="tags">
+              <span class="tag">ML Segmentation</span>
+              <span class="tag">A/B Testing</span>
+              <span class="tag">ETL / PySpark</span>
+              <span class="tag">Data Governance</span>
+            </div>
+          </span>
+          <span class="date">May 2019 — Apr 2022</span>
+        </div>
+        <div class="row">
+          <span class="idx">03</span>
+          <span>
+            <span class="title">ML Engineer Co-op</span>
+            <span class="org">Jay-Robotix</span>
+            <div class="tags">
+              <span class="tag">Computer Vision</span>
+              <span class="tag">Forecasting</span>
+            </div>
+          </span>
+          <span class="date">Aug 2018 — Apr 2019</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EDUCATION ================= -->
+    <section id="education" class="wrap">
+      <p class="eyebrow">Education</p>
+      <div class="ledger">
+        <div class="row">
+          <span class="idx">01</span>
+          <span>
+            <span class="title">M.S., Data Sciences &amp; Applications</span>
+            <span class="org">University at Buffalo (SUNY)</span>
+          </span>
+          <span class="date">Jan 2023 — Jun 2024</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SKILLS & TOOLS ================= -->
+    <section id="skills" class="wrap">
+      <p class="eyebrow">Skills &amp; Tools</p>
+      <div class="skills">
+        <div class="skillrow">
+          <span class="label">Programming Languages</span>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">R</span><span class="tag">SQL</span>
+            <span class="tag">Rust</span><span class="tag">Linux</span>
+          </div>
+        </div>
+        <div class="skillrow">
+          <span class="label">Machine Learning &amp; AI</span>
+          <div class="tags">
+            <span class="tag">Supervised &amp; Unsupervised Models</span><span class="tag">Deep Learning</span>
+            <span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">AI Agents</span>
+          </div>
+        </div>
+        <div class="skillrow">
+          <span class="label">Databases</span>
+          <div class="tags">
+            <span class="tag">Oracle</span><span class="tag">PostgreSQL</span>
+            <span class="tag">Microsoft SQL Server</span><span class="tag">NoSQL</span><span class="tag">BigQuery</span>
+          </div>
+        </div>
+        <div class="skillrow">
+          <span class="label">Cloud Technologies</span>
+          <div class="tags">
+            <span class="tag">AWS</span><span class="tag">Google Cloud</span><span class="tag">Microsoft Azure</span>
+          </div>
+        </div>
+        <div class="skillrow">
+          <span class="label">Tools</span>
+          <div class="tags">
+            <span class="tag">Tableau</span><span class="tag">Power BI</span>
+            <span class="tag">Git Version Control</span><span class="tag">Docker</span><span class="tag">DBT</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="wrap">
+      <div class="contact-panel">
+        <p class="eyebrow">Get in touch</p>
+        <h2>Open to Data Scientist roles.</h2>
+        <div class="contactlinks">
+          <a class="btn btn-primary" href="mailto:sateeshreddypatlolla97@gmail.com">Email</a>
+          <a class="btn btn-ghost" href="tel:+17162359822">716-235-9822</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/REPLACE-ME" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-ghost" href="https://github.com/REPLACE-ME" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> Sateesh Reddy Patlolla</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Experiment: scroll-reveal fade -->
+  <script>
+    (function () {
+      var supportsIO = 'IntersectionObserver' in window;
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!supportsIO || reduceMotion) return; // leave content fully visible
+      var els = document.querySelectorAll('main section:not(.hero)');
+      els.forEach(function (el) { el.classList.add('reveal'); });
+      var GATE = 1900; // ms — hold on-load reveals until the hero intro has played
+      var loadT = performance.now();
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var el = entry.target;
+            io.unobserve(el);
+            var wait = Math.max(0, GATE - (performance.now() - loadT));
+            if (wait > 0) { setTimeout(function () { el.classList.add('is-visible'); }, wait); }
+            else { el.classList.add('is-visible'); }
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+
+  <!-- Experiment: scroll progress bar + active nav -->
+  <script>
+    (function () {
+      // Progress bar
+      var bar = document.getElementById('progress');
+      if (bar) {
+        var ticking = false;
+        function update() {
+          var h = document.documentElement;
+          var max = h.scrollHeight - h.clientHeight;
+          var p = max > 0 ? h.scrollTop / max : 0;
+          bar.style.transform = 'scaleX(' + p + ')';
+          ticking = false;
+        }
+        function onScroll() {
+          if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        update();
+      }
+
+      // Active nav highlight
+      if ('IntersectionObserver' in window) {
+        var links = document.querySelectorAll('.nav nav a[href^="#"]');
+        var map = {};
+        links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+        var sections = [];
+        Object.keys(map).forEach(function (id) {
+          var s = document.getElementById(id);
+          if (s) sections.push(s);
+        });
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) {
+              links.forEach(function (a) { a.classList.remove('active'); });
+              if (map[en.target.id]) map[en.target.id].classList.add('active');
+            }
+          });
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+        sections.forEach(function (s) { spy.observe(s); });
+      }
+    })();
+  </script>
+
+  <!-- Experiment: nav theme inversion over dark panel -->
+  <script>
+    (function () {
+      var header = document.querySelector('header');
+      var panel = document.querySelector('.contact-panel');
+      if (!header || !panel) return;
+      var ticking = false;
+      function apply() {
+        var r = panel.getBoundingClientRect();
+        var headerH = header.offsetHeight || 62;
+        var overlap = r.top < headerH && r.bottom > 0;
+        header.classList.toggle('over-dark', overlap);
+        ticking = false;
+      }
+      function onScroll() {
+        if (!ticking) { window.requestAnimationFrame(apply); ticking = true; }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      apply();
+    })();
+  </script>
+
+</body>
+</html>
