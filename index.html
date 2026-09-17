@@ -370,17 +370,38 @@
       position: relative;
     }
     .focus-item {
-      padding: 24px 28px 24px 0;
+      padding: 24px 28px 40px 0;
       position: relative;
     }
     .focus-item:nth-child(odd) { padding-right: 28px; }
     .focus-item:nth-child(even) { padding-left: 28px; }
     .focus-item .k { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--copper); }
     .focus-item h3 { margin: 6px 0 0; }
+    .focus-link {
+      display: inline-block;
+      position: absolute;
+      right: 28px;
+      bottom: 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--navy);
+      opacity: 0.55;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;
+    }
+    .focus-link:hover, .focus-link:focus-visible {
+      color: var(--copper);
+      opacity: 1;
+      border-color: var(--copper);
+    }
+    .focus-item:nth-child(even) .focus-link { right: 0; }
     @media (max-width: 560px) {
       .focus-grid { grid-template-columns: 1fr; }
-      .focus-item, .focus-item:nth-child(odd), .focus-item:nth-child(even) { padding: 20px 0; }
+      .focus-item, .focus-item:nth-child(odd), .focus-item:nth-child(even) { padding: 20px 0 40px; }
       .focus-item:nth-child(odd)::before { display: none; }
+      .focus-item .focus-link, .focus-item:nth-child(even) .focus-link { right: 0; bottom: 4px; }
     }
 
     /* ---------- Ledger rows (experience / education) ---------- */
@@ -499,6 +520,7 @@
             <span class="tag">AI Agents</span>
             <span class="tag">RAG</span>
           </div>
+          <a class="focus-link" href="#" target="_blank" rel="noopener" aria-label="View Machine Learning &amp; Artificial Intelligence repo on GitHub">View repo &#8599;</a>
         </div>
         <div class="focus-item">
           <span class="k">02</span>
@@ -509,6 +531,7 @@
             <span class="tag">Generalized Linear Models</span>
             <span class="tag">Bayesian Networks</span>
           </div>
+          <a class="focus-link" href="#" target="_blank" rel="noopener" aria-label="View Statistical Models repo on GitHub">View repo &#8599;</a>
         </div>
         <div class="focus-item">
           <span class="k">03</span>
@@ -519,6 +542,7 @@
             <span class="tag">KPIs &amp; Dashboards</span>
             <span class="tag">Data Visualization</span>
           </div>
+          <a class="focus-link" href="#" target="_blank" rel="noopener" aria-label="View Analytics repo on GitHub">View repo &#8599;</a>
         </div>
         <div class="focus-item">
           <span class="k">04</span>
@@ -528,6 +552,7 @@
             <span class="tag">Prophet</span>
             <span class="tag">Demand &amp; Risk</span>
           </div>
+          <a class="focus-link" href="#" target="_blank" rel="noopener" aria-label="View Forecasting repo on GitHub">View repo &#8599;</a>
         </div>
       </div>
     </section>
@@ -590,6 +615,16 @@
             <span class="org">University at Buffalo (SUNY)</span>
           </span>
           <span class="date">Jan 2023 — Jun 2024</span>
+        </div>
+        <div class="skillrow">
+          <span class="label">Key Courses</span>
+          <div class="tags">
+            <span class="tag">Statistical Data Mining 1 &amp; 2</span><span class="tag">Machine Learning</span>
+            <span class="tag">Bayesian Networks</span><span class="tag">Probability &amp; Statistics</span>
+            <span class="tag">Advanced Statistical Data Modeling</span><span class="tag">Applications of Data Sciences</span>
+            <span class="tag">Database Management Systems</span><span class="tag">Data Visualisation</span>
+            <span class="tag">Cyber Security</span>
+          </div>
         </div>
       </div>
     </section>
