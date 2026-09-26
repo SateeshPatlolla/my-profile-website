@@ -313,6 +313,15 @@
       padding: 96px max(28px, calc((100% - var(--max)) / 2)) 72px;
     }
     .hero h1 { max-width: 12ch; }
+    .hero .bio {
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink);
+      max-width: 62ch;
+      margin-top: 22px;
+    }
+    .hero .bio + .tags-lg { margin-top: 28px; }
     .hero .role {
       font-family: var(--mono);
       font-size: 15px;
@@ -338,9 +347,16 @@
       to   { opacity: 1; transform: none; }
     }
     @media (prefers-reduced-motion: no-preference) {
+      .hero .bio {
+        opacity: 0;
+        animation: hero-in 0.6s ease 1.65s forwards;
+      }
+      .hero .bio:nth-of-type(2) {
+        animation-delay: 1.75s;
+      }
       .hero .tags-lg {
         opacity: 0;
-        animation: hero-in 0.6s ease 1.85s forwards;
+        animation: hero-in 0.6s ease 2.35s forwards;
       }
     }
 
@@ -397,11 +413,53 @@
       border-color: var(--copper);
     }
     .focus-item:nth-child(even) .focus-link { right: 0; }
+
+    /* Repo preview card — hover/focus on .focus-link (experiment) */
+    .repo-card {
+      position: absolute;
+      right: 28px;
+      bottom: 34px;
+      z-index: 5;
+      min-width: 200px;
+      max-width: 240px;
+      background: var(--paper);
+      border: 1px solid rgba(11, 31, 58, 0.15);
+      border-radius: 3px;
+      padding: 12px 14px;
+      box-shadow: 0 6px 18px rgba(11, 31, 58, 0.12);
+      opacity: 0;
+      transform: translateY(6px);
+      pointer-events: none;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .repo-card .repo-card__name {
+      display: block;
+      font-family: var(--mono);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--copper);
+      margin-bottom: 4px;
+    }
+    .repo-card .repo-card__desc {
+      display: block;
+      font-family: var(--sans);
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--ink);
+      opacity: 0.85;
+    }
+    .focus-link:hover + .repo-card,
+    .focus-link:focus-visible + .repo-card {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .focus-item:nth-child(even) .repo-card { right: 0; }
     @media (max-width: 560px) {
       .focus-grid { grid-template-columns: 1fr; }
       .focus-item, .focus-item:nth-child(odd), .focus-item:nth-child(even) { padding: 20px 0 40px; }
       .focus-item:nth-child(odd)::before { display: none; }
       .focus-item .focus-link, .focus-item:nth-child(even) .focus-link { right: 0; bottom: 4px; }
+      .repo-card, .focus-item:nth-child(even) .repo-card { right: 0; bottom: 26px; }
     }
 
     /* ---------- Ledger rows (experience / education) ---------- */
@@ -497,6 +555,8 @@
     <section class="hero wrap">
       <p class="eyebrow">Data Scientist</p>
       <h1>Sateesh Reddy Patlolla</h1>
+      <p class="bio">What I'm particularly good at isn't any single technique. It's noticing when a method built for one problem is secretly the right tool for a completely different one. I like pulling ideas out of the context they were built for, stripping them down to the part that actually matters, and reassembling them into something that holds up under scrutiny but didn't come from the obvious playbook.</p>
+      <p class="bio">I'm currently open to full-time jobs where the interesting part of the job is figuring out which lens to apply before ever touching the data, places that reward a slightly sideways approach to a hard problem over the fastest path to a familiar one.</p>
       <div class="tags tags-lg">
         <span class="tag"><strong>+</strong> Machine Learning &amp; AI</span>
         <span class="tag"><strong>+</strong> Statistical Models</span>
@@ -521,6 +581,10 @@
             <span class="tag">RAG</span>
           </div>
           <a class="focus-link" href="#" target="_blank" rel="noopener" aria-label="View Machine Learning &amp; Artificial Intelligence repo on GitHub">View repo &#8599;</a>
+          <div class="repo-card" role="tooltip">
+            <span class="repo-card__name">Repo pending</span>
+            <span class="repo-card__desc">Will link to a flagship LLM/agents project.</span>
+          </div>
         </div>
         <div class="focus-item">
           <span class="k">02</span>
@@ -532,6 +596,10 @@
             <span class="tag">Bayesian Networks</span>
           </div>
           <a class="focus-link" href="#" target="_blank" rel="noopener" aria-label="View Statistical Models repo on GitHub">View repo &#8599;</a>
+          <div class="repo-card" role="tooltip">
+            <span class="repo-card__name">Repo pending</span>
+            <span class="repo-card__desc">Will link to a Bayesian/GLM modeling project.</span>
+          </div>
         </div>
         <div class="focus-item">
           <span class="k">03</span>
@@ -543,6 +611,10 @@
             <span class="tag">Data Visualization</span>
           </div>
           <a class="focus-link" href="#" target="_blank" rel="noopener" aria-label="View Analytics repo on GitHub">View repo &#8599;</a>
+          <div class="repo-card" role="tooltip">
+            <span class="repo-card__name">Repo pending</span>
+            <span class="repo-card__desc">Will link to an A/B testing or dashboard project.</span>
+          </div>
         </div>
         <div class="focus-item">
           <span class="k">04</span>
@@ -553,6 +625,10 @@
             <span class="tag">Demand &amp; Risk</span>
           </div>
           <a class="focus-link" href="#" target="_blank" rel="noopener" aria-label="View Forecasting repo on GitHub">View repo &#8599;</a>
+          <div class="repo-card" role="tooltip">
+            <span class="repo-card__name">Repo pending</span>
+            <span class="repo-card__desc">Will link to a time-series/demand forecasting project.</span>
+          </div>
         </div>
       </div>
     </section>
@@ -692,6 +768,11 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Easter egg: personal touch, invisible to the page itself -->
+  <script>
+    console.log('%c⚡ Zenitsu-approved. Thunder Breathing, First Form: this site.', 'color:#b8860b;font-weight:bold;');
   </script>
 
   <!-- Experiment: scroll-reveal fade -->
