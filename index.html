@@ -529,9 +529,25 @@
     @media (max-width: 560px) { .contact-panel { padding: 36px 28px; } }
 
     footer { padding: 40px 0; color: var(--navy); opacity: 0.7; font-family: var(--mono); font-size: 12.5px; }
+
+    /* ---------- Experiment: shan-shui-inf background test ---------- */
+    .bg-experiment {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      border: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.18;
+      filter: sepia(0.4) saturate(0.6);
+    }
   </style>
 </head>
 <body>
+
+  <!-- Experiment: testing github.com/LingDong-/shan-shui-inf (MIT) as a background — remove if it doesn't fit -->
+  <iframe class="bg-experiment" src="assets/shan-shui-bg.html" title="" aria-hidden="true" tabindex="-1"></iframe>
 
   <a class="skip-link" href="#main">Skip to main content</a>
 
@@ -561,7 +577,7 @@
         <span class="tag"><strong>+</strong> Machine Learning &amp; AI</span>
         <span class="tag"><strong>+</strong> Statistical Models</span>
         <span class="tag"><strong>+</strong> Analytics</span>
-        <span class="tag"><strong>+</strong> Forecasting</span>
+        <span class="tag"><strong>+</strong> Recommender Systems &amp; Forecasting</span>
       </div>
     </section>
 
@@ -618,16 +634,17 @@
         </div>
         <div class="focus-item">
           <span class="k">04</span>
-          <h3>Forecasting</h3>
+          <h3>Recommender Systems &amp; Forecasting</h3>
           <div class="tags">
+            <span class="tag">Recommender Systems</span>
             <span class="tag">Time-Series</span>
             <span class="tag">Prophet</span>
             <span class="tag">Demand &amp; Risk</span>
           </div>
-          <a class="focus-link" href="#" target="_blank" rel="noopener" aria-label="View Forecasting repo on GitHub">View repo &#8599;</a>
+          <a class="focus-link" href="#" target="_blank" rel="noopener" aria-label="View Recommender Systems &amp; Forecasting repo on GitHub">View repo &#8599;</a>
           <div class="repo-card" role="tooltip">
             <span class="repo-card__name">Repo pending</span>
-            <span class="repo-card__desc">Will link to a time-series/demand forecasting project.</span>
+            <span class="repo-card__desc">Will link to a recommender systems/time-series project.</span>
           </div>
         </div>
       </div>
